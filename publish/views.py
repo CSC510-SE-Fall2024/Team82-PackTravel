@@ -114,7 +114,9 @@ def create_ride(request):
         # Check if cost has an error message
         if isinstance(cost, str) and cost.startswith("Error:"):
             return JsonResponse({"error": cost}, status=400)  # Return an error response
-
+        
+        owner = users_collection.find_one({"username": request.session["username"]}) 
+        print(owner)
         # Prepare the ride data
         ride = {
             "_id": str(uuid.uuid4()),
@@ -132,7 +134,12 @@ def create_ride(request):
             "cost": cost,
             "requested_users": [],
             "confirmed_users": [],
-            "is_finished": False
+            "is_finished": False,
+            "likes": owner["likes"],
+            "is_smoker": owner["is_smoker"],
+            "travel_preferences": owner["travel_preferences"],
+            "driver_gender": owner["driver_gender"],
+            "travel_with_pets": owner["travel_with_pets"]
         }
 
         request.session["ride"] = ride
