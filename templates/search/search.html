@@ -67,7 +67,46 @@
     {% include 'nav.html' %}
 
     <div class="container-fluid justify-content-center" style="background-color: #27292a; color: white; margin-top: 10px;"><br>
-        <br>
+
+	<br>
+        <!-- Recommended Ride Section -->
+        <div class="recommended-section" style="margin: 20px;">
+            <h3 class="text-center apply-font">Recommended Ride</h3>
+            <hr>
+            {% if recommended_ride %}
+            <div class="card mx-auto" style="width: 80%; color: black; margin: 20px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recommended_ride.source }} to {{ recommended_ride.destination }}</h5>
+                    <p class="card-text">{{ recommended_ride.ride_type }}</p>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td>Date</td>
+                                <td>{{ recommended_ride.date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Starting Time</td>
+                                <td>{{ recommended_ride.hour }}:{{ recommended_ride.minute }} {{ recommended_ride.ampm }}</td>
+                            </tr>
+                            <tr>
+                                <td>Availability</td>
+                                <td>{{ recommended_ride.availability }} out of {{ recommended_ride.max_size }}</td>
+                            </tr>
+                            <tr>
+                                <td>Owner</td>
+                                <td>{{ recommended_ride.owner }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="/ride_page/{{ recommended_ride.id }}" style="background-color: #D22B2B; border-color: #D22B2B;" class="btn btn-dark">View</a>
+                    <a href="/request_ride/{{ recommended_ride.id }}" style="background-color: #D22B2B; border-color: #D22B2B;" class="btn btn-dark">Request</a>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-center">No recommended rides at the moment.</p>
+            {% endif %}
+        </div>
+        <!-- End of Recommended Ride Section -->
         <h3 class="text-center apply-font">Search a ride</h3>
         <hr>
         <div class="input-group mb-3">
