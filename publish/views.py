@@ -115,8 +115,18 @@ def create_ride(request):
         if isinstance(cost, str) and cost.startswith("Error:"):
             return JsonResponse({"error": cost}, status=400)  # Return an error response
         
-        owner = users_collection.find_one({"username": request.session["username"]}) 
-        print(owner)
+        owner = users_collection.find_one({"username": request.session["username"]})
+        owner_likes = ""
+        owner_travel_preferences = ""
+        owner_is_smoker = False
+        owner_driver_gender = False
+        owner_travel_with_pets = False
+        if owner!= None:
+            owner_likes = owner["likes"]
+            owner_travel_preferences = owner["travel_preferences"]
+            owner_is_smoker = owner["is_smoker"]
+            owner_driver_gender = owner["driver_gender"]
+            owner_travel_with_pets =  owner["travel_with_pets"]
         # Prepare the ride data
         ride = {
             "_id": str(uuid.uuid4()),
@@ -135,11 +145,11 @@ def create_ride(request):
             "requested_users": [],
             "confirmed_users": [],
             "is_finished": False,
-            "likes": owner["likes"],
-            "is_smoker": owner["is_smoker"],
-            "travel_preferences": owner["travel_preferences"],
-            "driver_gender": owner["driver_gender"],
-            "travel_with_pets": owner["travel_with_pets"]
+            "likes": owner_likes,
+            "is_smoker": owner_is_smoker,
+            "travel_preferences": owner_travel_preferences,
+            "driver_gender": owner_driver_gender,
+            "travel_with_pets": owner_travel_with_pets
         }
 
         request.session["ride"] = ride
