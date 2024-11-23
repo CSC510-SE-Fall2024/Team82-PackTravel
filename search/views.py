@@ -1,6 +1,6 @@
 """Django views for ride search functionality"""
 from django.shortcuts import render, redirect
-from cachetools import LRUCache;
+#from cachetools import LRUCache;
 from utils import get_client
 from request import views as requestsViews
 from sklearn.feature_extraction.text import TfidfVectorizer
