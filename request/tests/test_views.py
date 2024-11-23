@@ -42,6 +42,10 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
         self.assertRedirects(response, "/requests/")
 
+        notifications = Notification.objects.filter(username="test")
+        self.assertEqual(notifications.count(), 1)
+        self.assertEqual(notifications.first().message, 'Your request to join the ride to destination has been accepted.')
+
     def test_reject_ride_request(self):
         """Tests for ride rejected"""
         session = self.client.session
