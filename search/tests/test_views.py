@@ -2,6 +2,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from unittest.mock import patch
+from search.views import get_recommended_ride
 
 class TestViews(TestCase):
     """Test class to test Django views for ride creation functionality"""
@@ -86,3 +87,25 @@ class TestViews(TestCase):
         self.assertIn("rides", response.context)
         self.assertIn("recommended_ride", response.context)
         self.assertEqual(response.context["recommended_ride"]["id"], "ride1")
+
+    def test_get_recommended_ride(self):
+        """Test for the get_recommended_ride function with boolean driver_gender"""
+        # Mock user preferences and available rides
+        user_preferences = {
+            "travel_preferences": "Comfort",
+            "likes": "music, quiet",
+            "is_smoker": False,
+            "travel_with_pets": False,
+            "driver_gender": True  # True represents female
+        }
+
+        all_rides = [
+            {"_id": "ride1", "owner": "user1", "travel_preferences": "Comfort", "likes": "music, quiet", "is_smoker": False, "driver_gender": False, "travel_with_pets": False, "destination": "City A"},  # Male driver
+            {"_id": "ride2", "owner": "user2", "travel_preferences": "Economy", "likes": "loud music", "is_smoker": True, "driver_gender": True, "travel_with_pets": True, "destination": "City B"},  # Female driver
+        ]
+
+        # Call the function directly
+        recommended_ride = get_recommended_ride(user_preferences, all_rides)
+
+        # Expected result: ride2 should be recommended as it matches the female driver preference
+        self.assertEqual(recommended_ride["_id"], "ride1")
