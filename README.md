@@ -11,6 +11,9 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
 [![Repo Size](https://img.shields.io/github/repo-size/TripleS-org/PackTravel_G29)](https://github.com/TripleS-org/PackTravel_G29/)
 
+<a href="https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/CSC510-SE-Fall2024/Team82-PackTravel?cacheBuster=1"></a>
+<a href="https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/CSC510-SE-Fall2024/Team82-PackTravel?cacheBuster=1"></a>
+
 PackTravel is a web-application that connects people who want to carpool, share a cab or ride a bus together. Users can offer rides with their own vehicles, or travel together as a group in a cab or a bus. PackTravel helps you stay on a budget by reducing your travel expenses so that you don't have to miss out on that concert you've been wanting to attend 😉.
 
 ## 💎 Features
