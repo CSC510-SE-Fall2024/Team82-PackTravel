@@ -10,6 +10,9 @@ class Profile(models.Model):
     travel_preferences = models.CharField(max_length=255, blank=True)
     likes = models.CharField(max_length=255, blank=True)
     is_smoker = models.BooleanField(default=False)
+    driver_gender = models.BooleanField(default=False)
+    travel_with_pets = models.BooleanField(default=False)
+
 
     def __str__(self):
         # Ensure that 'user' is an instance of the User model
