@@ -5,7 +5,9 @@ from request import views as requestsViews
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-
+import sys
+sys.path.append("../cache")
+from cache.timed_cache import lru_cache
 # database connections
 db_client = None
 db_handle = None
@@ -19,6 +21,8 @@ def initialize_database():
     db_handle = db_client.main
     users_collection = db_handle.users
     rides_collection = db_handle.rides
+
+
 
 def get_recommended_ride(user_preferences, all_rides):
     """
@@ -53,7 +57,6 @@ def get_recommended_ride(user_preferences, all_rides):
     most_similar_index = np.argmax(similarity_scores)
     #print(similarity_scores)
     if similarity_scores[most_similar_index] > 0:  # Ensure the similarity is significant
-        print(all_rides[most_similar_index])
         return all_rides[most_similar_index]
 
     else:
@@ -73,22 +76,25 @@ def search_index(request):
     user_data = users_collection.find_one({"username": username})
     all_rides = list(rides_collection.find({'owner': {'$ne' : username}}))
     processed = []
-    
-        # Extract user preferences
-    user_preferences = {
-        "travel_preferences": user_data.get("travel_preferences", ""),
-        "likes": user_data.get("likes", ""),
-        "is_smoker": user_data.get("is_smoker", False),
-        "travel_with_pets": user_data.get("travel_with_pets", False),
-        "driver_gender": user_data.get("driver_gender", False),
-    }
+    user_preferences = {}
 
     for ride in all_rides:
         ride["id"] = ride.pop("_id")
         processed.append(ride)
 
-    recommended_ride = get_recommended_ride(user_preferences, processed)
-    #print(recommended_ride)
+    if user_data != None:    # Extract user preferences
+        user_preferences = {
+            "travel_preferences": user_data.get("travel_preferences", ""),
+            "likes": user_data.get("likes", ""),
+            "is_smoker": user_data.get("is_smoker", False),
+            "travel_with_pets": user_data.get("travel_with_pets", False),
+            "driver_gender": user_data.get("driver_gender", False),
+        }
+        recommended_ride = get_recommended_ride(user_preferences, processed)
+    else:
+        recommended_ride = processed[0]
+
+
     return render(request, "search/search.html", {"username": request.session["username"], "rides": processed, 'recommended_ride': recommended_ride})
 
 
