@@ -12,7 +12,7 @@ class TestViews(TestCase):
         self.accept_request_url = reverse("accept_request", args=["078508ce-2efc-4316-8987-12b9551be5b4", "test"])
         self.reject_request_url = reverse("reject_request", args=["078508ce-2efc-4316-8987-12b9551be5b4", "test"])
         self.delete_ride_url = reverse("delete_ride", args=["078508ce-2efc-4316-8987-12b9551be5b4"])
-
+        
     def test_requested_rides(self):
         """Tests for ride requested"""
         session = self.client.session
@@ -75,3 +75,8 @@ class TestViews(TestCase):
         # go to requests page
         self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
         self.assertRedirects(response, "/requests/")
+    
+    def test_send_capacity_mail(self):
+        """Tests for sending capacity mail"""
+        from request.views import send_capacity_mail
+        send_capacity_mail("test_owner@example.com", "Test Body", "Test Subject")
