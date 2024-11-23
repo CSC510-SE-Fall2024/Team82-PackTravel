@@ -135,6 +135,9 @@ def user_profile(request):
                 "travel_preferences": form.cleaned_data["travel_preferences"],
                 "likes": form.cleaned_data["likes"],
                 "is_smoker": form.cleaned_data["is_smoker"],
+                "travel_with_pets": form.cleaned_data["travel_with_pets"],
+                "driver_gender": form.cleaned_data["driver_gender"]
+
             }
             users_collection.update_one(
                 {"username": username},
@@ -143,12 +146,16 @@ def user_profile(request):
             request.session["travel_preferences"] = user_data["travel_preferences"]
             request.session["likes"] = user_data["likes"]
             request.session["is_smoker"] = user_data["is_smoker"]
+            request.session["travel_with_pets"] = user_data["travel_with_pets"]
+            request.session["driver_gender"] = user_data["driver_gender"]
             return redirect(index)
     else:
         initial_data = {
             "travel_preferences": user.get("travel_preferences", ""),
             "likes": user.get("likes", ""),
             "is_smoker": user.get("is_smoker", False),
+            "travel_with_pets": user.get("travel_with_pets", False),
+            "driver_gender": user.get("driver_gender", False),
         }
         form = ProfileForm(initial=initial_data)
 
@@ -191,3 +198,18 @@ def notifications(request):
     user_notifications = Notification.objects.filter(username=username).order_by('-created_at')
 
     return render(request, 'notifications.html', {'notifications': user_notifications})
+
+def ride_history(request):
+    initialize_database()
+
+    # Check if the user is logged in
+    if not request.session.has_key("username"):
+        request.session["alert"] = "Please login to view your ride history"
+        return redirect("index")
+    
+    username = request.session["username"]
+
+    # Fetch completed rides for the user
+    completed_rides = list(rides_collection.find({"confirmed_users": username}))
+
+    return render(request, "user/ride_history.html", {"completed_rides": completed_rides})
