@@ -1,4 +1,4 @@
-name: Codacy Coverage
+name: Codecov Coverage
 
 on:
   push:
@@ -51,17 +51,11 @@ jobs:
           coverage run --source='.' manage.py test
           coverage xml
 
-      - name: Upload coverage to Codacy
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        run: |
-          curl -Ls https://coverage.codacy.com/get.sh | bash -s -- report -r coverage.xml
-
-      - name: Set Badge URL
-        id: codacy_badge
-        run: |
-          badge_url="https://app.codacy.com/project/badge/Coverage/${{ github.repository }}?token=${{ secrets.CODACY_PROJECT_TOKEN }}"
-          echo "Badge URL: $badge_url"
-          echo "::set-output name=badge_url::$badge_url"
+      - name: Upload coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN}}
+          file: coverage.xml
 
 
