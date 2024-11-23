@@ -1,7 +1,8 @@
 """Django url tests for user login and sign up functionality"""
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from user.views import index, register, logout, login, user_profile
+from user.views import index, register, logout, login, user_profile, notifications
+from request.views import accept_request
 from django.contrib.auth import views as auth_views
 
 class TestUrl(SimpleTestCase):
@@ -55,3 +56,11 @@ class TestUrl(SimpleTestCase):
     def test_password_reset_complete_resolved(self):
         url = reverse('password_reset_complete')
         self.assertEqual(resolve(url).func.view_class, auth_views.PasswordResetCompleteView)
+    
+    def test_notifications_url_is_resolved(self):
+        url = reverse('notifications')
+        self.assertEqual(resolve(url).func, notifications)
+
+    def test_accept_request_url_is_resolved(self):
+        url = reverse('accept_request', args=['ride_id', 'user'])
+        self.assertEqual(resolve(url).func, accept_request)

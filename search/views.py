@@ -1,5 +1,6 @@
 """Django views for ride search functionality"""
 from django.shortcuts import render, redirect
+from cachetools import LRUCache;
 from utils import get_client
 from request import views as requestsViews
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -7,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import sys
 sys.path.append("../cache")
-from cache.timed_cache import lru_cache
+
 # database connections
 db_client = None
 db_handle = None
