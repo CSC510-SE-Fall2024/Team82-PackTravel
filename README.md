@@ -1,5 +1,6 @@
 # 🐺 PackTravel
 [![Build](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/actions/workflows/build.yml/badge.svg)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/actions/workflows/build.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14210493.svg)](https://doi.org/10.5281/zenodo.14210493)
 [![codecov](https://codecov.io/gh/CSC510-SE-Fall2024/Team82-PackTravel/branch/main/graph/badge.svg?token=20a750d4-c013-4006-8a38-24bddf824450)](https://codecov.io/gh/CSC510-SE-Fall2024/Team82-PackTravel)
 [![Commit Activity](https://img.shields.io/github/commit-activity/w/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulse)
 [![Issues](https://img.shields.io/github/issues/CSC510-SE-Fall2024/Team82-PackTravel?color=red)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues)
