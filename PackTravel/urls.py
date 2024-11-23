@@ -32,7 +32,7 @@ urlpatterns = [
     path('register/', userView.register, name='register'),
     path('requests/', requestsViews.requested_rides, name='requests'),
     path('cancel_ride/<ride_id>', requestsViews.cancel_ride, name='cancel_ride'),
-    path('accept_request/<ride_id>/<user>', requestsViews.accept_request, name='accept_request'),
+    path('accept_request/<ride_id>/<user>/', requestsViews.accept_request, name='accept_request'),
     path('reject_request/<ride_id>/<user>', requestsViews.reject_request, name='reject_request'),
     path('cancel_accepted_ride/<ride_id>/<user>', requestsViews.cancel_accepted_ride, name='cancel_accepted_request'),
     path('delete_ride/<ride_id>', requestsViews.delete_ride, name='delete_ride'),
@@ -49,4 +49,7 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('notifications/', userView.notifications, name='notifications'),
+    
+
 ]

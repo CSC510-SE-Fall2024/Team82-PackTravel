@@ -1,4 +1,4 @@
 database:
-  endpoint: packtravel.1uznz.mongodb.net/?retryWrites=true&w=majority&appName=PackTravel
-  username: packtravel
-  password: packtravel
+  endpoint: cluster0.zwau0.mongodb.net/?retryWrites=true&w=majority&tls=true&appName=Cluster0
+  username: sohampatil195
+  password: pJ9WIORj17gaznOZ

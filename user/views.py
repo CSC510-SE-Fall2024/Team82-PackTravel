@@ -1,6 +1,10 @@
 """Django views for user login and sign up functionality"""
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from utils import get_client
+from user.models import Notification
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ProfileForm, FeedbackForm
 import hashlib
 
@@ -30,6 +34,7 @@ def index(request, username=None):
     else:
         user = request.session["username"]
 
+    user = str(username)
     if "username" in request.session:
         return render(request, "home/home.html", {"username": user})
     return render(request, "home/home.html", {"username": None})
@@ -173,3 +178,16 @@ def feedback(request, ride_id):
         form = FeedbackForm()
 
     return render(request, "user/feedback.html", {"form": form})
+
+
+def notifications(request):
+    """This method displays notifications to the user"""
+    username = request.session.get("username")
+    if not username:
+        return redirect('login')  # Redirect if no username found in session
+
+    # Fetch notifications for the username
+    print(f'Fetching notifications for user {username}')
+    user_notifications = Notification.objects.filter(username=username).order_by('-created_at')
+
+    return render(request, 'notifications.html', {'notifications': user_notifications})
