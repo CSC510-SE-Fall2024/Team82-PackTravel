@@ -1,7 +1,9 @@
 """Django views for ride management functionality"""
+import logging
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
+from user.models import Notification
 from utils import get_client
 
 # database connections
@@ -81,13 +83,21 @@ def accept_request(request, ride_id, user):
         ride_updated = rides_collection.find_one({"_id": ride_id})
         if ride_updated["availability"] == 0:
             print("in")
-            user = users_collection.find_one({"username" : ride["owner"]})
+            owner = users_collection.find_one({"username" : ride["owner"]})
             body = "Your ride to " + ride["destination"] + "has been booked. Please find the users below \n"
             for i in ride_updated["confirmed_users"]:
                 body += i+", "
             subject = "Ride reached capacity"
-            send_capacity_mail(user["email"], body[:-2], subject)
+            send_capacity_mail(owner["email"], body[:-2], subject)
             print("mail sent")
+    
+    # Create a notification for the user who made the request
+    message = f'Your request to join the ride to {ride["destination"]} has been accepted.'
+    Notification.objects.create(
+        username=user,  # The username of the rider
+        message=message
+    )
+    print(f'Notification created for user {user}')  # Debugging notification creation
 
 
     return redirect(requested_rides)
@@ -150,6 +160,6 @@ def send_capacity_mail(user_mail, body, subject):
         recepients = [user_mail]
         send_mail(subject, body, settings.EMAIL_HOST_USER, recepients)
     except ValueError:
-        print("failed to send mail due to error in body")
+        logging.info("failed to send mail due to error in body")
     except: # pylint: disable=bare-except
-        print("failed to send mail")
+        logging.info("failed to send mail")

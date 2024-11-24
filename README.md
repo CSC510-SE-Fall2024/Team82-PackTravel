@@ -1,15 +1,22 @@
 # 🐺 PackTravel
-[![Build](https://github.com/TripleS-org/PackTravel_G29/actions/workflows/build.yml/badge.svg)](https://github.com/TripleS-org/PackTravel_G29/actions/workflows/build.yml)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9df7800c90694928ba61e4ff7950359a)](https://app.codacy.com/gh/TripleS-org/PackTravel_G29/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9df7800c90694928ba61e4ff7950359a)](https://app.codacy.com/gh/TripleS-org/PackTravel_G29/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Commit Acitivity](https://img.shields.io/github/commit-activity/w/TripleS-org/PackTravel_G29)](https://github.com/TripleS-org/PackTravel_G29/pulse)
-[![Issues](https://img.shields.io/github/issues/TripleS-org/PackTravel_G29?color=red)](https://github.com/TripleS-org/PackTravel_G29/issues)
-[![Contributors](https://img.shields.io/github/contributors/TripleS-org/PackTravel_G29)](https://github.com/TripleS-org/PackTravel_G29/graphs/contributors)
-[![License](https://img.shields.io/github/license/TripleS-org/PackTravel_G29)](LICENSE)
+[![Build](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/actions/workflows/build.yml/badge.svg)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/actions/workflows/build.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14210493.svg)](https://doi.org/10.5281/zenodo.14210493)
+[![codecov](https://codecov.io/gh/CSC510-SE-Fall2024/Team82-PackTravel/branch/main/graph/badge.svg?token=20a750d4-c013-4006-8a38-24bddf824450)](https://codecov.io/gh/CSC510-SE-Fall2024/Team82-PackTravel)
+[![Commit Activity](https://img.shields.io/github/commit-activity/w/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulse)
+[![Issues](https://img.shields.io/github/issues/CSC510-SE-Fall2024/Team82-PackTravel?color=red)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues)
+[![Contributors](https://img.shields.io/github/contributors/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/graphs/contributors)
+[![Discord](https://img.shields.io/discord/1300195209472114780?color=blueviolet&label=Discord%20Discussion%20Chat&cacheBuster=1)](https://discord.gg/UF5Hr2dW)
+[![GitHub issues](https://img.shields.io/github/issues/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulls?q=is%3Apr+is%3Aclosed)
+[![License](https://img.shields.io/github/license/CSC510-SE-Fall2024/Team82-PackTravel)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/TripleS-org/PackTravel_G29)
-[![Code Size](https://img.shields.io/github/languages/code-size/TripleS-org/PackTravel_G29)](https://github.com/TripleS-org/PackTravel_G29/)
+[![Code Size](https://img.shields.io/github/languages/code-size/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
-[![Repo Size](https://img.shields.io/github/repo-size/TripleS-org/PackTravel_G29)](https://github.com/TripleS-org/PackTravel_G29/)
+[![Repo Size](https://img.shields.io/github/repo-size/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/)
+
+<a href="https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/CSC510-SE-Fall2024/Team82-PackTravel?cacheBuster=1"></a>
+<a href="https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/CSC510-SE-Fall2024/Team82-PackTravel?cacheBuster=1"></a>
 
 PackTravel is a web-application that connects people who want to carpool, share a cab or ride a bus together. Users can offer rides with their own vehicles, or travel together as a group in a cab or a bus. PackTravel helps you stay on a budget by reducing your travel expenses so that you don't have to miss out on that concert you've been wanting to attend 😉.
 
