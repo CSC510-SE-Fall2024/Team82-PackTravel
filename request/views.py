@@ -1,4 +1,5 @@
 """Django views for ride management functionality"""
+import logging
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
@@ -159,6 +160,6 @@ def send_capacity_mail(user_mail, body, subject):
         recepients = [user_mail]
         send_mail(subject, body, settings.EMAIL_HOST_USER, recepients)
     except ValueError:
-        print("failed to send mail due to error in body")
+        logging.info("failed to send mail due to error in body")
     except: # pylint: disable=bare-except
-        print("failed to send mail")
+        logging.info("failed to send mail")

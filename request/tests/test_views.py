@@ -7,6 +7,8 @@ from request.views import send_capacity_mail
 from unittest.mock import patch
 from django.conf import settings
 
+from user.models import Notification
+
 class TestViews(TestCase):
     """Test class to test Django views for ride creation functionality"""
     def setUp(self):
@@ -149,13 +151,13 @@ class TestViews(TestCase):
     @patch('request.views.send_mail', side_effect=ValueError)
     def test_send_capacity_mail_value_error(self, mock_send_mail):
         """Tests for sending capacity mail with ValueError"""
-        with self.assertLogs(level='INFO') as log:
+        with self.assertLogs('root', level='INFO') as log:
             send_capacity_mail("test_owner@example.com", "Test Body", "Test Subject")
-            self.assertIn("failed to send mail due to error in body", log.output)
+            self.assertIn("INFO:root:failed to send mail due to error in body", log.output)
 
     @patch('request.views.send_mail', side_effect=Exception)
     def test_send_capacity_mail_generic_error(self, mock_send_mail):
         """Tests for sending capacity mail with generic exception"""
-        with self.assertLogs(level='INFO') as log:
+        with self.assertLogs('root', level='INFO') as log:
             send_capacity_mail("test_owner@example.com", "Test Body", "Test Subject")
-            self.assertIn("failed to send mail", log.output)
+            self.assertIn("INFO:root:failed to send mail", log.output)
