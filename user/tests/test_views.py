@@ -177,3 +177,11 @@ class TestViews(TestCase):
         response = self.client.get(self.feedback_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "user/feedback.html")
+
+    def test_user_profile_get(self):
+        # Test GET request to ensure the profile page loads correctly
+        response = self.client.get(reverse('user_profile'))
+        self.assertEqual(response.status_code, 302)
+        #self.assertTemplateUsed(response, 'user/profile.html')
+        self.assertIsInstance(response.context['form'], ProfileForm)
+        self.assertEqual(response.context['user'].username, 'testuser')
