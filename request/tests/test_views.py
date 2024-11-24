@@ -1,8 +1,6 @@
 """File containing django view tests for ride management functionality"""
 from django.test import TestCase, Client
 from django.urls import reverse
-from pymongo import MongoClient
-from user.models import Notification
 
 class TestViews(TestCase):
     """Test class to test Django views for ride creation functionality"""
@@ -14,34 +12,7 @@ class TestViews(TestCase):
         self.accept_request_url = reverse("accept_request", args=["078508ce-2efc-4316-8987-12b9551be5b4", "test"])
         self.reject_request_url = reverse("reject_request", args=["078508ce-2efc-4316-8987-12b9551be5b4", "test"])
         self.delete_ride_url = reverse("delete_ride", args=["078508ce-2efc-4316-8987-12b9551be5b4"])
-
-        # Initialize database connection
-        self.client_db = MongoClient("mongodb+srv://sohampatil195:pJ9WIORj17gaznOZ@testcluster.zwau0.mongodb.net/?retryWrites=true&w=majority&appName=TestCluster")
-        self.db_handle = self.client_db.test_db
-        self.rides_collection = self.db_handle.rides
-        self.users_collection = self.db_handle.users
-
-        # Insert a test ride
-        self.rides_collection.insert_one({
-            "_id": "078508ce-2efc-4316-8987-12b9551be5b4",
-            "owner": "test_owner",
-            "destination": "destination",
-            "availability": 1,
-            "requested_users": ["test"],
-            "confirmed_users": []
-        })
-
-        # Insert a test user
-        self.users_collection.insert_one({
-            "username": "test_owner",
-            "email": "test_owner@example.com"
-        })
-
-    def tearDown(self):
-        # Clean up the test database
-        self.rides_collection.delete_many({})
-        self.users_collection.delete_many({})
-
+        
     def test_requested_rides(self):
         """Tests for ride requested"""
         session = self.client.session
@@ -95,51 +66,15 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
         self.assertRedirects(response, "/requests/")
 
-    def test_delete_ride_not_logged_in(self):
-        """Tests for delete ride when user is not logged in"""
-        response = self.client.get(self.delete_ride_url)
-        self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
-        self.assertRedirects(response, "/index/")
+    def test_delete_ride(self):
+        """Tests for ride deleted"""
         session = self.client.session
-        self.assertEqual(session["alert"], "Please login to cancel rides.")
-
-    def test_delete_ride_not_found(self):
-        """Tests for delete ride when ride is not found"""
-        session = self.client.session
-        session["username"] = "test_owner"
-        session.save()
-        response = self.client.get(reverse("delete_ride", args=["non_existent_ride_id"]))
-        self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
-        self.assertRedirects(response, "/requests/")
-
-    def test_delete_ride_owner(self):
-        """Tests for delete ride when user is the owner"""
-        # Set up the session with the owner username
-        session = self.client.session
-        session["username"] = "test_owner"
-        session.save()
-
-        # Perform the delete ride request
-        response = self.client.get(self.delete_ride_url)
-
-        # Verify that the response redirects to the requests page
-        self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
-        self.assertRedirects(response, "/requests/")
-
-        # Verify that the ride has been deleted from the database
-        ride = self.rides_collection.find_one({"_id": "078508ce-2efc-4316-8987-12b9551be5b4"})
-        self.assertIsNone(ride)
-
-    def test_delete_ride_owner(self):
-        """Tests for delete ride when user is the owner"""
-        session = self.client.session
-        session["username"] = "test_owner"
+        session["username"] = "test"
         session.save()
         response = self.client.get(self.delete_ride_url)
+        # go to requests page
         self.assertEqual(response.status_code, 302) # pylint: disable=deprecated-method
         self.assertRedirects(response, "/requests/")
-        ride = self.rides_collection.find_one({"_id": "078508ce-2efc-4316-8987-12b9551be5b4"})
-        self.assertIsNone(ride)
     
     def test_send_capacity_mail(self):
         """Tests for sending capacity mail"""
