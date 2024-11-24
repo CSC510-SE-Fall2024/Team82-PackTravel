@@ -1,6 +1,10 @@
 """Django views for user login and sign up functionality"""
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from utils import get_client
+from user.models import Notification
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ProfileForm, FeedbackForm
 import hashlib
 
@@ -30,6 +34,7 @@ def index(request, username=None):
     else:
         user = request.session["username"]
 
+    user = str(username)
     if "username" in request.session:
         return render(request, "home/home.html", {"username": user})
     return render(request, "home/home.html", {"username": None})
@@ -130,6 +135,9 @@ def user_profile(request):
                 "travel_preferences": form.cleaned_data["travel_preferences"],
                 "likes": form.cleaned_data["likes"],
                 "is_smoker": form.cleaned_data["is_smoker"],
+                "travel_with_pets": form.cleaned_data["travel_with_pets"],
+                "driver_gender": form.cleaned_data["driver_gender"]
+
             }
             users_collection.update_one(
                 {"username": username},
@@ -138,12 +146,16 @@ def user_profile(request):
             request.session["travel_preferences"] = user_data["travel_preferences"]
             request.session["likes"] = user_data["likes"]
             request.session["is_smoker"] = user_data["is_smoker"]
+            request.session["travel_with_pets"] = user_data["travel_with_pets"]
+            request.session["driver_gender"] = user_data["driver_gender"]
             return redirect(index)
     else:
         initial_data = {
             "travel_preferences": user.get("travel_preferences", ""),
             "likes": user.get("likes", ""),
             "is_smoker": user.get("is_smoker", False),
+            "travel_with_pets": user.get("travel_with_pets", False),
+            "driver_gender": user.get("driver_gender", False),
         }
         form = ProfileForm(initial=initial_data)
 
@@ -173,6 +185,19 @@ def feedback(request, ride_id):
         form = FeedbackForm()
 
     return render(request, "user/feedback.html", {"form": form})
+
+
+def notifications(request):
+    """This method displays notifications to the user"""
+    username = request.session.get("username")
+    if not username:
+        return redirect('login')  # Redirect if no username found in session
+
+    # Fetch notifications for the username
+    print(f'Fetching notifications for user {username}')
+    user_notifications = Notification.objects.filter(username=username).order_by('-created_at')
+
+    return render(request, 'notifications.html', {'notifications': user_notifications})
 
 def ride_history(request):
     initialize_database()

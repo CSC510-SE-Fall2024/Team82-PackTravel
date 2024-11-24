@@ -67,10 +67,20 @@ class ProfileForm(forms.ModelForm):
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}), 
         label='Do you smoke?'
     )
+    travel_with_pets = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        label='Do you want a pet friendly ride?'
+    )
+    driver_gender = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        label="More comfortable with a female driver?(This does not guarantee your driver's gender)"
+    )
 
     class Meta:
         model = User
-        fields = ('travel_preferences', 'likes', 'is_smoker')
+        fields = ('travel_preferences', 'likes', 'is_smoker', 'travel_with_pets', 'driver_gender')
 
 class FeedbackForm(forms.Form):
     """Form for ride feedback, including ratings and textual feedback."""
