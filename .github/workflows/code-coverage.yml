@@ -49,7 +49,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           # Exclude test files from coverage tracking
-          coverage run --source='.' --omit="*/tests/*,*/test_*.py,*/*/tests/*.py" manage.py test
+          coverage run --source='.' manage.py test
           coverage xml
 
       - name: Upload coverage to Codecov
