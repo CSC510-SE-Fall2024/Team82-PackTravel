@@ -75,7 +75,7 @@ For any help or assistance regarding the software, please e-mail any of the deve
 
 | Factor | Score | Notes |
 | --- | --- | --- |
-| Video | 3 | Link Updated () |
+| Video | 3 | Link Updated (https://drive.google.com/file/d/16hNj_y3JSg7LHX-OpMNvlh4-JKAThvD9/view?usp=sharing) |
 | Workload | 3 | Distributed |
 | Number of commits | 3 | 50+ |
 | Number of commits: by different people | 3 | https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/ |
