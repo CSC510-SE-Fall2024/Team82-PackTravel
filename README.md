@@ -5,7 +5,7 @@
 [![Commit Activity](https://img.shields.io/github/commit-activity/w/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulse)
 [![Issues](https://img.shields.io/github/issues/CSC510-SE-Fall2024/Team82-PackTravel?color=red)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues)
 [![Contributors](https://img.shields.io/github/contributors/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/graphs/contributors)
-[![Discord](https://img.shields.io/discord/1300195209472114780?color=blueviolet&label=Discord%20Discussion%20Chat&cacheBuster=1)](https://discord.gg/UF5Hr2dW)
+[![Discord](https://img.shields.io/discord/1300195209472114780?color=blueviolet&label=Discord%20Discussion%20Chat&cacheBuster=1)](https://discord.gg/dtf3ZSYP)
 [![GitHub issues](https://img.shields.io/github/issues/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/CSC510-SE-Fall2024/Team82-PackTravel)](https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulls?q=is%3Apr+is%3Aclosed)
