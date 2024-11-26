@@ -78,7 +78,7 @@ For any help or assistance regarding the software, please e-mail any of the deve
 | Video | 3 | Link Updated () |
 | Workload | 3 | Distributed |
 | Number of commits | 3 | 50+ |
-| Number of commits: by different people | 3 | https://github.com/CSC510-SE-Fall2024/Team-82_Project-2/graphs/contributors?from=28%2F09%2F2024 |
+| Number of commits: by different people | 3 | https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/ |
 | Issues report: There are many | 2 | https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/ |
 | Issues are being closed | 2 | https://github.com/CSC510-SE-Fall2024/Team82-PackTravel/pulse |
 | DOI badge | 3 |  |
